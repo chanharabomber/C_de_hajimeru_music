@@ -11,11 +11,11 @@ int main(void)
   double *x_real, *x_imag;
   
   //mono_wave_read(&pcm0, "ex2_1.wav"); /* WAVEファイルからモノラルの音データを入力する */
-  mono_wave_read(&pcm0, "../guitar_A5.wav");
+  mono_wave_read(&pcm0, "/home/akihabara/C_de_hajimeru/music/ex12_2.wav");
   //mono_wave_read(&pcm0, "../guitar_E5.wav");
 
   //N = 64;
-  N = 4096;
+  N = 2048;
   x_real = calloc(N, sizeof(double)); /* メモリの確保 */
   x_imag = calloc(N, sizeof(double)); /* メモリの確保 */
   
@@ -32,7 +32,7 @@ int main(void)
   {
     //printf("%d %f+j%f\n", k, x_real[k], x_imag[k]);
     double power = x_real[k]*x_real[k] + x_imag[k]*x_imag[k];
-    printf("%d %f %f %f\n", k, x_real[k], x_imag[k],power);
+    printf("%d %f %f %f %f\n", k, x_real[k], x_imag[k], power, atan2(x_real[k],x_imag[k]));
 
   }
   

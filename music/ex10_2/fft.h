@@ -1,4 +1,11 @@
 #include <math.h>
+double sin_c(double x)
+{
+  double y;
+  if(x==0) return 1;
+  else { y = sin(x)/x;
+  return y; }
+}
 
 int l_og2(int x) /* y = l_og2(x) */
 {

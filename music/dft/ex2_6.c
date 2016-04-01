@@ -11,8 +11,9 @@ int main(void)
   double *x_real, *x_imag, *X_real, *X_imag, *w;
   double W_real, W_imag;
   
-  mono_wave_read(&pcm0, "ex2_1.wav"); /* WAVEファイルからモノラルの音データを入力する */
+  //mono_wave_read(&pcm0, "ex2_1.wav"); /* WAVEファイルからモノラルの音データを入力する */
   //mono_wave_read(&pcm0, "/home/akihabara/C_de_hajimeru/chapter02/guitar_A4.wav"); 
+  mono_wave_read(&pcm0, "/home/akihabara/C_de_hajimeru/music/resampling/ex12_2.wav");
   //N = 64; /* DFTのサイズ */
   N = 4096;
   x_real = calloc(N, sizeof(double)); /* メモリの確保 */

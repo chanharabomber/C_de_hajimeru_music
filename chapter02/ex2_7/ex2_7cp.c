@@ -4,18 +4,17 @@
 #include "wave.h"
 #include "fft.h"
 
+void FFT(double[], double[],int);
+
 int main(void)
 {
   MONO_PCM pcm0;
   int n, k, N;
   double *x_real, *x_imag;
   
-  //mono_wave_read(&pcm0, "ex2_1.wav"); /* WAVEファイルからモノラルの音データを入力する */
-  mono_wave_read(&pcm0, "../guitar_A5.wav");
-  //mono_wave_read(&pcm0, "../guitar_E5.wav");
-
-  //N = 64;
-  N = 4096;
+  mono_wave_read(&pcm0, "ex2_1.wav"); /* WAVEファイルからモノラルの音データを入力する */
+  
+  N = 64;
   x_real = calloc(N, sizeof(double)); /* メモリの確保 */
   x_imag = calloc(N, sizeof(double)); /* メモリの確保 */
   
@@ -30,10 +29,7 @@ int main(void)
   /* 周波数特性 */
   for (k = 0; k < N; k++)
   {
-    //printf("%d %f+j%f\n", k, x_real[k], x_imag[k]);
-    double power = x_real[k]*x_real[k] + x_imag[k]*x_imag[k];
-    printf("%d %f %f %f\n", k, x_real[k], x_imag[k],power);
-
+    printf("%d %f+j%f\n", k, x_real[k], x_imag[k]);
   }
   
   free(pcm0.s); /* メモリの解放 */
