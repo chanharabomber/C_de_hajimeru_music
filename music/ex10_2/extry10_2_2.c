@@ -23,16 +23,21 @@ int main(void)
     return -1;
   }
 
-  mono_wave_read(&pcm0, "grouwlvoice.wav"); /* WAVEファイルからモノラルの音データを入力する */
-  mono_wave_read(&pcm00, "sample12.wav");
+  //mono_wave_read(&pcm0, "grouwlvoice.wav"); /* WAVEファイルからモノラルの音データを入力する */
+  mono_wave_read(&pcm0, "sample12.wav");
+  mono_wave_read(&pcm00,"sample10.wav");
+  //mono_wave_read(&pcm00, "sample12.wav");
 
   MONO_PCM pcmtemp;
   double t, pitch;
   int J,m;
   pcmtemp.fs = pcm0.fs; /* 標本化周波数の変更 */
-  //pitch = 0.5;
-  pitch = pcm00.fs / 70.0;
+  /* サンプリング周波数のピッチではなく、声の基本周波数のピッチ */
+  pitch = 2.0;
+  //pitch = 250.0 / 70.0; // 決め打ち
+  //pitch = 70.0 / pcm00.fs;
   printf("pcm00fs = %d,pitch= %f\n",pcm00.fs,pitch);
+  printf("pcm0fs = %d,pitch = %f\n",pcm0.fs,pitch);
   pcmtemp.bits = pcm0.bits; /* 量子化精度 */
   pcmtemp.length = (int)(pcm0.length / pitch); /* 音データの長さ */
   pcmtemp.s = calloc(pcmtemp.length, sizeof(double)); /* メモリの確保 */
@@ -159,7 +164,7 @@ int main(void)
     /* 加工結果の連結 */
     for (n = 0; n < N; n++)
     {
-      pcm1.s[offset + n] += 2*y_real[n];
+      pcm1.s[offset + n ] += y_real[n];
       pcm1.s[offset + n] += y2_real[n];
     }
   }
